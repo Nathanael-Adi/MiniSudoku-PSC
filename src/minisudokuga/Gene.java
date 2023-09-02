@@ -10,17 +10,17 @@ package minisudokuga;
  * @author CEN
  */
 public class Gene {
-    int number;
-    
-    Gene (int n){
+    private int number;
+
+    public Gene(int n) {
         number = n;
     }
-    
-    void setNumber(int i){
+
+    public void setNumber(int i) {
         number = i;
     }
-    
-    int getNumber(){
+
+    public int getNumber() {
         return number;
     }
 }
