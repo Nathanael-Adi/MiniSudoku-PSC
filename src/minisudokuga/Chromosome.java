@@ -115,7 +115,7 @@ public class Chromosome {
         fitness = rowDuplicates + colDuplicates + subBlockDuplicates;
     }
     
-    public int getFitness() {
-        return (int) fitness;
+    public float getFitness() {
+        return fitness;
     }
 }

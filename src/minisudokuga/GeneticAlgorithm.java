@@ -95,7 +95,7 @@ public class GeneticAlgorithm {
    // menghitung fitness dari setiap kromosom
    // mencatat kromosom terbaik
    void checkFitness(){ 
-    int currentBestFitness = Integer.MAX_VALUE;
+    float currentBestFitness = Integer.MAX_VALUE;
     int currentBestIndex = -1;
 
     for (int i = 0; i < popSize; i++) {
