@@ -271,16 +271,16 @@ public class guiFrame extends javax.swing.JFrame {
                             img = new ImageIcon("icons\\blank.jpg");
                         break;
                         case 1: 
-                            img = new ImageIcon("icons\\elephant.jpg");
+                            img = new ImageIcon("icons\\number1.jpg");
                         break;
                         case 2: 
-                            img = new ImageIcon("icons\\zebra.jpg");
+                            img = new ImageIcon("icons\\number2.jpg");
                         break;
                         case 3: 
-                            img = new ImageIcon("icons\\turtle.jpg");
+                            img = new ImageIcon("icons\\number3.jpg");
                         break;
                         case 4: 
-                            img = new ImageIcon("icons\\penguin.jpg");
+                            img = new ImageIcon("icons\\number4.jpg");
                         break;
                     }
                     btn[i][j].setIcon(img); 
