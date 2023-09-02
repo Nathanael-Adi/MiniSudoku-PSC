@@ -88,4 +88,34 @@ public class Chromosome {
         Sudoku s = new Sudoku(size, this.toBoard(size));
         s.printSudoku();
     }
+
+    public Object getGene(int j) {
+        return genes[j].getNumber();
+    }
+    
+    public void setGene(int j, Object gene) {
+        genes[j].setNumber((Integer) gene);
+    }
+    
+    public void mutateGene(int mutationPoint) {
+        // Implementasi mutasi sesuai dengan kebutuhan Anda, misalnya mengganti gen dengan nilai acak
+        int newValue = (int) (Math.random() * genes.length) + 1;
+        genes[mutationPoint].setNumber(newValue);
+    }
+    
+    public void calculateFitness() {
+        // Implementasikan logika perhitungan fitness sesuai dengan aturan Sudoku
+        // Anda dapat menggunakan logika yang telah Anda terapkan dalam metode fitness() sebelumnya.
+        // Perhitungan fitness dapat menjadi perbandingan antara jumlah duplikasi di baris, kolom, dan subblok.
+        int rowDuplicates = rowCheck();
+        int colDuplicates = colCheck();
+        int subBlockDuplicates = subCheck();
+        
+        // Misalnya, kita dapat menghitung total fitness sebagai jumlah duplikasi di semua area Sudoku.
+        fitness = rowDuplicates + colDuplicates + subBlockDuplicates;
+    }
+    
+    public int getFitness() {
+        return (int) fitness;
+    }
 }
