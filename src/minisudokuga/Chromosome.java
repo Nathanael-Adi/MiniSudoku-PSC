@@ -49,21 +49,72 @@ public class Chromosome {
                 idx++;
             }
         }
+        System.out.println("The fitness is: " + fitness());
     }
     
     // mengembalikan berapa banyak duplikasi di baris
-    int rowCheck(){
-        return 0;
+    int rowCheck() {
+        int size = (int) Math.sqrt(genes.length); // Ukuran papan Sudoku
+        int[][] board = toBoard(size); // Mendapatkan representasi papan Sudoku dari gen kromosom
+        int rowDuplicates = 0;
+    
+        for (int i = 0; i < size; i++) {
+            Set<Integer> rowSet = new HashSet<>();
+            for (int j = 0; j < size; j++) {
+                int cellValue = board[i][j];
+                if (cellValue != -1) {
+                    if (!rowSet.add(cellValue)) {
+                        rowDuplicates++;
+                    }
+                }
+            }
+        }
+        return rowDuplicates;
     }
     
     // mengembalikan berapa banyak duplikasi di kolom
-    int colCheck(){
-        return 0;
+    int colCheck() {
+        int size = (int) Math.sqrt(genes.length); // Ukuran papan Sudoku
+        int[][] board = toBoard(size); // Mendapatkan representasi papan Sudoku dari gen kromosom
+        int colDuplicates = 0;
+    
+        for (int j = 0; j < size; j++) {
+            Set<Integer> colSet = new HashSet<>();
+            for (int i = 0; i < size; i++) {
+                int cellValue = board[i][j];
+                if (cellValue != -1) {
+                    if (!colSet.add(cellValue)) {
+                        colDuplicates++;
+                    }
+                }
+            }
+        }
+        return colDuplicates;
     }
     
     // mengembalikan berapa banyak duplikasi di subblok
-    int subCheck(){
-        return 0;
+    int subCheck() {
+        int size = (int) Math.sqrt(genes.length); // Ukuran papan Sudoku
+        int subBlockSize = (int) Math.sqrt(size); // Ukuran subblok
+        int[][] board = toBoard(size); // Mendapatkan representasi papan Sudoku dari gen kromosom
+        int subBlockDuplicates = 0;
+    
+        for (int blockRow = 0; blockRow < subBlockSize; blockRow++) {
+            for (int blockCol = 0; blockCol < subBlockSize; blockCol++) {
+                Set<Integer> subBlockSet = new HashSet<>();
+                for (int i = blockRow * subBlockSize; i < (blockRow + 1) * subBlockSize; i++) {
+                    for (int j = blockCol * subBlockSize; j < (blockCol + 1) * subBlockSize; j++) {
+                        int cellValue = board[i][j];
+                        if (cellValue != -1) {
+                            if (!subBlockSet.add(cellValue)) {
+                                subBlockDuplicates++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return subBlockDuplicates;
     }
     
     int fitness(){
@@ -101,21 +152,5 @@ public class Chromosome {
         // Implementasi mutasi sesuai dengan kebutuhan Anda, misalnya mengganti gen dengan nilai acak
         int newValue = (int) (Math.random() * genes.length) + 1;
         genes[mutationPoint].setNumber(newValue);
-    }
-    
-    public void calculateFitness() {
-        // Implementasikan logika perhitungan fitness sesuai dengan aturan Sudoku
-        // Anda dapat menggunakan logika yang telah Anda terapkan dalam metode fitness() sebelumnya.
-        // Perhitungan fitness dapat menjadi perbandingan antara jumlah duplikasi di baris, kolom, dan subblok.
-        int rowDuplicates = rowCheck();
-        int colDuplicates = colCheck();
-        int subBlockDuplicates = subCheck();
-        
-        // Misalnya, kita dapat menghitung total fitness sebagai jumlah duplikasi di semua area Sudoku.
-        fitness = rowDuplicates + colDuplicates + subBlockDuplicates;
-    }
-    
-    public float getFitness() {
-        return fitness;
     }
 }

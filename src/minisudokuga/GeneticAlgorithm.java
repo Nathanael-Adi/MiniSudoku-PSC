@@ -18,6 +18,7 @@ public class GeneticAlgorithm {
    int maxIter;
    Chromosome [] population;
    int best;
+   float bestFitness;
    
    // konstruktor
    GeneticAlgorithm(int s, Triple [] p, double pco, double pm, int ps, int mi){
@@ -100,17 +101,19 @@ public class GeneticAlgorithm {
 
     for (int i = 0; i < popSize; i++) {
         Chromosome chromosome = population[i];
-        chromosome.calculateFitness();
+        chromosome.fitness();
 
         // Periksa apakah kromosom saat ini memiliki fitness yang lebih baik dari yang terbaik
-        if (chromosome.getFitness() < currentBestFitness) {
-            currentBestFitness = chromosome.getFitness();
+        if (chromosome.fitness() < currentBestFitness) {
+            currentBestFitness = chromosome.fitness();
             currentBestIndex = i;
         }
     }
 
     // Catat kromosom terbaik
-    best = currentBestIndex;      
+    best = currentBestIndex;
+    bestFitness = population[best].fitness();
+    System.out.println("The best fitness is: " + bestFitness);
    }
    
    // pembangkitan populasi awal, generate kromosom sebanyak popSize
